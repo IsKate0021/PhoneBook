@@ -6,8 +6,8 @@
 ## Запуск
 Подготовка к запуску программы, клонируйте этот репозиторий и установите необходимые зависимости
 ```bash
-git clone https://github.com/???/???.git
-cd ???
+git clone https://github.com/IsKate0021/PhoneBook.git
+cd PhoneBook
 pip install -r requirements.txt
 ```
 
@@ -43,8 +43,33 @@ python __main__.py --data-file=path/to/your_data_file.txt
     - Пользователь выбирает критерий поиска, вводя соответствующее числовое значение.
     - Затем вводит данные в соответствии с выбранным критерием.
 
-## Dependencies
+## Зависимости
 Программа требует установки следующих зависимостей:
 - click:  для создания интерфейса командной строки.
 - tabulate: для удобочитаемого форматирования таблиц.
 Убедитесь, что все зависимости установлены с помощью файла require.txt, содержащегося в репозитории.
+
+## Запись тестовых данных в телефонный справочник
+```python
+test_data = [
+    "Ivanov;Ivan;Ivanovich;Company A;1234567890;0987654321",
+    "Petrov;Petr;Petrovich;Company B;2345678901;9876543210",
+    "Sidorov;Sidr;Sidorovich;Company C;3456789012;8765432109",
+    "Kuznetsov;Alexey;Alexeevich;Company D;4567890123;7654321098",
+    "Smirnov;Nikolai;Nikolaevich;Company E;5678901234;6543210987",
+    "Popov;Mikhail;Mikhailovich;Company F;6789012345;5432109876",
+    "Sokolov;Andrey;Andreevich;Company G;7890123456;4321098765",
+    "Lebedev;Kirill;Kirillovich;Company H;8901234567;3210987654",
+    "Kozlov;Dmitry;Dmitrievich;Company I;9012345678;2109876543",
+    "Novikov;Pavel;Pavlovich;Company J;0123456789;1098765432",
+    "Morozov;Vasiliy;Vasilievich;Company K;1234509876;0987654321",
+    "Petrova;Elena;Petrovna;Company L;2345610987;9876543210",
+    "Ivanova;Maria;Ivanovna;Company M;3456721098;8765432109",
+    "Smirnova;Olga;Nikolaevna;Company N;4567832109;7654321098",
+    "Kuznetsova;Tatiana;Alexeevna;Company O;5678943210;6543210987",
+]
+
+with open('data.txt', 'w', encoding='utf-8') as file:
+    for row in test_data:
+        file.write(row + '\n')
+```

@@ -2,7 +2,6 @@ from file_handler import FileHandler
 from typing import List, Dict 
 from records_handler import RecordsHandler
 import re
-import pprint
 import tabulate
 
 
@@ -115,7 +114,15 @@ class PhoneBook:
         work_phone = input('Введите рабочий номер телефона: ')
         personal_phone = input('Введите личный номер телефона: ')
 
-        record = self.records_handler.add_to_records(len(self.records_handler.records_list), last_name.strip(), name.strip(), patronymic.strip(), organization.strip(), work_phone.strip(), personal_phone.strip())
+        record = self.records_handler.add_to_records(
+            len(self.records_handler.records_list), 
+            last_name.strip().title(), 
+            name.strip().title(), 
+            patronymic.strip().title(), 
+            organization.strip().title(), 
+            work_phone.strip().title(), 
+            personal_phone.strip().title()
+        )
         rows = self.records_handler.record_to_row([record])
         self.file_handler.add_to_file(rows)
 
@@ -144,7 +151,10 @@ class PhoneBook:
                 list_for_output = []
 
                 for record in self.records_handler.records_list:
-                    if last_name_for_search.strip() == record['last_name'] and name_for_search.strip() == record['name'] and patronymic_for_search.strip() == record['patronymic']:
+                    if last_name_for_search.strip().title() == record['last_name'] \
+                       and name_for_search.strip().title() == record['name'] \
+                       and patronymic_for_search.strip().title() == record['patronymic']:
+                        
                         list_for_output.append(record)
                         self.pretty_print(list_for_output)
                         break
@@ -155,7 +165,7 @@ class PhoneBook:
                 list_for_output = []
 
                 for record in self.records_handler.records_list:
-                    if organization_for_search.strip() == record['organization']:
+                    if organization_for_search.strip().title() == record['organization']:
                         list_for_output.append(record)
                         self.pretty_print(list_for_output)
                         break
@@ -206,7 +216,7 @@ class PhoneBook:
             filtered_records = []
 
             for record in self.records_handler.records_list:      
-                if last_name_for_edit.strip() == record['last_name']:
+                if last_name_for_edit.strip().title() == record['last_name']:
                     
                     filtered_records.append(record)
 
@@ -215,7 +225,8 @@ class PhoneBook:
 
             if index_list:  
                 while True:
-                    num_of_record = input('Введите номер для изменения, нужной вам записи (Для выхода нажмите Enter) ')
+                    num_of_record = input('Введите номер из представленной таблицы для изменения,' 
+                                          'нужной вам записи (Для выхода нажмите Enter) ')
                     if not num_of_record:
                         break
                     if num_of_record in index_list:
@@ -226,14 +237,22 @@ class PhoneBook:
                         work_phone = input('Введите рабочий номер телефона: ')
                         personal_phone = input('Введите личный номер телефона: ')
 
-                        self.records_handler.update_record(num_of_record.strip(), last_name.strip(), name.strip(), patronymic.strip(), organization.strip(), work_phone.strip(), personal_phone.strip())
+                        self.records_handler.update_record(
+                            num_of_record.strip().title(), 
+                            last_name.strip().title(), 
+                            name.strip().title(), 
+                            patronymic.strip().title(), 
+                            organization.strip().title(), 
+                            work_phone.strip().title(), 
+                            personal_phone.strip().title()
+                        )
                         rows = self.records_handler.record_to_row(self.records_handler.records_list)
                         self.file_handler.update_file(rows)
                         return                 
                     else:
                             print("Нет фамилии с таким номером. Попробуйте еще раз")
             else:
-                print("Нет записей с такой фамилией. Попробуйте еще раз")     # хотите добавить запись?
+                print("Нет записей с такой фамилией. Попробуйте еще раз")   
 
 
 if __name__ == '__main__':

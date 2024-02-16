@@ -4,18 +4,14 @@
 Консольное приложение на основе Python предлагает простой, но эффективный способ управления телефонной книгой. Данное приложение позволяет пользователям отображать, добавлять, редактировать и искать записи в каталоге, используя удобный интерфейс.
 
 ## Запуск
-Подготовка к запуску программы, клонируйте этот репозиторий и установите необходимые зависимости
-```bash
+Для запуска через консоль, клонируйте этот репозиторий и установите необходимые зависимости:
+```bat
 git clone https://github.com/IsKate0021/PhoneBook.git
-cd PhoneBook
-pip install -r requirements.txt
+python -m venv venv
+venv\Scripts\activate.bat
+pip install -r PhoneBook\requirements.txt
+python PhoneBook run --data-file=mydata.txt
 ```
-
-Для запуска через консоль:
-```bash
-python __main__.py --data-file=path/to/your_data_file.txt
-```
-
 
 ## Функционал
 ###  Вывод постранично записей из справочника на экран:
